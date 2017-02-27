@@ -1,5 +1,5 @@
 /**
- * @file Directive: Busy
+ * @file Directive: Bus
  * @author yumao<yuzhang.lille@gmail.com>
  */
 
@@ -122,17 +122,17 @@ export class BusyDirective implements DoCheck {
 
     private createBackdrop() {
         const backdropFactory = this.cfResolver.resolveComponentFactory(BusyBackdropComponent);
-        this.backdropRef = this.vcRef.createComponent(backdropFactory, null, this.injector);
+        this.backdropRef = this.vcRef.createComponent(backdropFactory, undefined, this.injector);
     }
 
     private createBusy() {
         const busyFactory = this.cfResolver.resolveComponentFactory(BusyComponent);
-        this.busyRef = this.vcRef.createComponent(busyFactory, null, this.injector);
+        this.busyRef = this.vcRef.createComponent(busyFactory, undefined, this.injector);
 
         const {message, wrapperClass, template} = this.optionsNorm;
         let instance = this.busyRef.instance;
-        instance.context.message = message;
-        instance.wrapperClass = wrapperClass;
-        instance.template = template;
+        (<any>instance)['context']['message'] = message;
+        (<any>instance)['wrapperClass'] = wrapperClass;
+        (<any>instance)['template'] = template;
     }
 }

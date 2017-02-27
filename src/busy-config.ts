@@ -15,7 +15,7 @@ export class BusyConfig implements IBusyConfig {
 
     constructor(config: IBusyConfig = {}) {
         for (let option in BUSY_CONFIG_DEFAULTS) {
-            this[option] = config[option] != null ? config[option] : BUSY_CONFIG_DEFAULTS[option];
+            (<any>this)[option] = (<any>config)[option] != null ? (<any>config)[option] : (<any>BUSY_CONFIG_DEFAULTS)[option];
         }
     }
 }

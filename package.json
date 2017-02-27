@@ -1,43 +1,37 @@
 {
   "name": "angular2-busy",
-  "description": "Angular 2 Busy: show busy/loading indicators on any promise, or on any Observable's subscription",
   "version": "1.0.2",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/devyumao/angular2-busy.git"
-  },
+  "description": "Angular 2 Busy: show busy/loading indicators on any promise, or on any Observable's subscription",
   "keywords": [
     "angular",
     "angular2",
     "busy",
     "loading",
     "angular2-busy",
-    "ng2-busy"
+    "angular2-busy"
   ],
-  "author": "Yumao",
+   "author": "Yumao",
   "license": "MIT",
   "main": "index.js",
-  "typings": "",
-  "homepage": "https://github.com/devyumao/angular2-busy",
-  "bugs": {
-    "url": "https://github.com/devyumao/angular2-busy"
-  },
   "scripts": {
-    "build": "cross-env NODE_ENV=busy webpack --progress",
-    "watch": "cross-env NODE_ENV=busy webpack --inline --progress --profile --colors --watch --display-error-details --display-cached --content-base build",
-    "build:busy": "npm run build",
-    "watch:busy": "npm run watch",
-    "build:demo": "cross-env NODE_ENV=demo webpack --progress",
-    "watch:demo": "cross-env NODE_ENV=demo webpack-dev-server --inline --progress --profile --colors --watch --display-error-details --display-cached --content-base demo/asset",
-    "test": "cross-env NODE_ENV=test webpack --inline --progress --colors --watch --content-base test"
+    "clean": "rimraf .tmp && rimraf dist",
+    "transpile": "ngc",
+    "package": "rollup -c",
+    "minify": "./node_modules/uglify-js/bin/uglifyjs dist/bundles/angular2-busy.umd.js --screw-ie8 --compress --mangle --comments --output dist/bundles/angular2-busy.umd.min.js",
+    "copy": "cpx './package-dist.json' dist && renamer --find 'package-dist.json' --replace 'package.json' ./dist/*",
+    "build": "npm run clean && npm run transpile && npm run package && npm run minify && npm run copy"
   },
-  "dependencies": {
-    "ts-metadata-helper": "~0.0.4",
-    "angular2-dynamic-component": "~1.3.13"
+  "homepage": "https://github.com/devyumao/angular2-busy/",
+  "bugs": {
+    "url": "https://github.com/devyumao/angular2-busy/issues/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/devyumao/angular2-busy.git"
   },
   "devDependencies": {
-    "@angular/common": "~2.4.0",
-    "@angular/compiler": "~2.4.0",
+    "@angular/compiler": "^2.4.4",
+    "@angular/compiler-cli": "^2.4.4",
     "@angular/core": "~2.4.0",
     "@angular/forms": "~2.4.0",
     "@angular/http": "~2.4.0",
@@ -47,9 +41,8 @@
     "autoprefixer": "^6.3.7",
     "awesome-typescript-loader": "^0.19.1",
     "bootstrap": "4.0.0-alpha.2",
-    "compression-webpack-plugin": "^0.3.1",
-    "copy-webpack-plugin": "^3.0.1",
     "core-js": "^2.4.1",
+    "cpx": "^1.5.0",
     "cross-env": "^3.1.2",
     "extract-text-webpack-plugin": "^1.0.1",
     "html-webpack-plugin": "^2.19.0",
@@ -60,13 +53,25 @@
     "postcss-loader": "^0.9.1",
     "raw-loader": "^0.5.1",
     "reflect-metadata": "^0.1.3",
+    "renamer": "^0.6.1",
+    "rimraf": "^2.5.4",
+    "rollup": "^0.41.4",
+    "rollup-plugin-node-resolve": "^2.0.0",
     "rxjs": "~5.0.2",
     "ts-loader": "^0.8.2",
     "tslint": "^3.10.2",
     "typescript": "~2.0.10",
     "typings": "^0.8.1",
+    "uglify-js": "^2.7.5",
     "webpack": "^1.12.15",
-    "webpack-dev-server": "^1.14.1",
     "zone.js": "^0.7.4"
+  },
+  "dependencies": {
+    "@angular/common": "^2.4.4",
+    "@angular/core": "^2.4.4",
+    "angular2-dynamic-component": "^1.3.15",
+    "rxjs": "^5.0.2",
+    "ts-metadata-helper": "0.0.4",
+    "zone.js": "^0.7.6"
   }
 }

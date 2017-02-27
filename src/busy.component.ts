@@ -50,7 +50,7 @@ export class BusyComponent {
     wrapperClass: string;
     template: string;
     context: IBusyContext = {
-        message: null
+        message: ""
     };
 
     constructor(private tracker: PromiseTrackerService) {

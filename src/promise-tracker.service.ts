@@ -22,7 +22,7 @@ export class PromiseTrackerService {
 
         this.promiseList = [];
         options.promiseList.forEach(promise => {
-            if (!promise || promise['busyFulfilled']) {
+            if (!promise || (<any>promise)['busyFulfilled']) {
                 return;
             }
             this.addPromise(promise);
@@ -72,7 +72,7 @@ export class PromiseTrackerService {
     }
 
     private finishPromise(promise: Promise<any> | Subscription) {
-        promise['busyFulfilled'] = true;
+        (<any>promise)['busyFulfilled'] = true;
         const index = this.promiseList.indexOf(promise);
         if (index === -1) {
             return;

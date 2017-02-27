@@ -3,7 +3,7 @@
  * @author yumao<yuzhang.lille@gmail.com>
  */
 
-export * from './busy.directive';
-export * from './busy.service';
-export * from './busy-config';
-export * from './busy.module';
+export {BusyDirective} from './busy.directive';
+export {BusyService} from './busy.service';
+export {BusyConfig, BUSY_CONFIG_DEFAULTS} from './busy-config';
+export {BusyModule} from './busy.module';
