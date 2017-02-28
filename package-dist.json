@@ -1,6 +1,6 @@
 {
 	"name": "angular2-busy-aot",
-	"version": "1.0.0",
+	"version": "1.0.1",
   	"description": "Aot compatible version of angular2-busy",
   	"keywords": [
     	"angular",
