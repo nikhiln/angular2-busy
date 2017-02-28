@@ -9,7 +9,12 @@ import {
     state,
     style,
     transition,
-    animate
+    animate,
+    Compiler, 
+    NgModule, 
+    OnInit, 
+    ViewChild,
+    ViewContainerRef
 } from '@angular/core';
 
 import {PromiseTrackerService} from './promise-tracker.service';
@@ -29,9 +34,7 @@ export interface IBusyContext {
     selector: 'ng-busy',
     template: `
         <div [class]="wrapperClass" *ngIf="isActive()" @flyInOut>
-            <DynamicComponent [componentTemplate]="template" [componentContext]="context">
-            </DynamicComponent>
-        </div>
+        <div #templateContainer></div>
     `,
     animations: [
         trigger('flyInOut', [
@@ -45,18 +48,41 @@ export interface IBusyContext {
         ])
     ]
 })
-export class BusyComponent {
+export class BusyComponent implements OnInit {
     message: string;
     wrapperClass: string;
-    template: string;
+    template: string = "";
     context: IBusyContext = {
         message: ""
     };
 
-    constructor(private tracker: PromiseTrackerService) {
+    @ViewChild('templateContainer', { read: ViewContainerRef }) templateContainer: ViewContainerRef;
+
+
+    constructor(private compiler: Compiler, private tracker: PromiseTrackerService) {
     }
 
     isActive() {
         return this.tracker.isActive();
+    }
+
+    ngOnInit() {
+        this.addComponent(this.template);
+      }
+
+    private addComponent(template: string) {
+        @Component({template: template})
+        class TemplateComponent {}
+
+        @NgModule({declarations: [TemplateComponent]})
+        class TemplateModule {}
+
+        const mod = this.compiler.compileModuleAndAllComponentsSync(TemplateModule);
+        const factory = mod.componentFactories.find((comp) =>
+          comp.componentType === TemplateComponent
+        );
+        if (factory) {
+            const component = this.templateContainer.createComponent(factory);
+        }
     }
 }
