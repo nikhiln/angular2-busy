@@ -1,7 +1,7 @@
 {
-	"name": "angular2-busy",
-	"version": "1.0.2",
-  	"description": "Angular 2 Busy: show busy/loading indicators on any promise, or on any Observable's subscription",
+	"name": "angular2-busy-aot",
+	"version": "1.0.0",
+  	"description": "Aot compatible version of angular2-busy",
   	"keywords": [
     	"angular",
     	"angular2",
@@ -10,15 +10,15 @@
     	"angular2-busy",
     	"angular2-busy"
   	],
-   	"author": "Yumao",
+   	"author": "Yumao & nikhiln",
   	"license": "MIT",
-  	"homepage": "https://github.com/devyumao/angular2-busy/",
+  	"homepage": "https://github.com/nikhiln/angular2-busy/",
   	"bugs": {
-    	"url": "https://github.com/devyumao/angular2-busy/issues/"
+    	"url": "https://github.com/nikhiln/angular2-busy/issues/"
   	},
   	"repository": {
     	"type": "git",
-    	"url": "https://github.com/devyumao/angular2-busy.git"
+    	"url": "https://github.com/nikhiln/angular2-busy.git"
   	},
 	"peerDependencies": {
 		"@angular/core": "^2.4.0",
