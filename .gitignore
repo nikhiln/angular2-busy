@@ -12,3 +12,5 @@ Thumbs.db
 # Style scripts
 build/busy.js
 .tmp
+dist
+dist/*
